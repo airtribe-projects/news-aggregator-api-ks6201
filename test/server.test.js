@@ -1,6 +1,7 @@
-const tap = require('tap');
-const supertest = require('supertest');
-const app = require('../app');
+import tap from 'tap';
+import supertest from 'supertest';
+import { app } from '../app.js';
+
 const server = supertest(app);
 
 const mockUser = {
@@ -16,6 +17,7 @@ let token = '';
 
 tap.test('POST /users/signup', async (t) => { 
     const response = await server.post('/users/signup').send(mockUser);
+    
     t.equal(response.status, 200);
     t.end();
 });
@@ -45,6 +47,7 @@ tap.test('POST /users/login with wrong password', async (t) => {
         email: mockUser.email,
         password: 'wrongpassword'
     });
+    
     t.equal(response.status, 401);
     t.end();
 });
@@ -61,6 +64,7 @@ tap.test('GET /users/preferences', async (t) => {
 
 tap.test('GET /users/preferences without token', async (t) => {
     const response = await server.get('/users/preferences');
+    
     t.equal(response.status, 401);
     t.end();
 });
