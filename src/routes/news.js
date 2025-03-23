@@ -32,7 +32,7 @@ newsRouter.post(
 
 newsRouter.get(
     "/favorite",
-    asyncHandler(NewsController.getFavoritesNewsArticles)
+    asyncHandler(NewsController.getFavoriteNewsArticles)
 );
 
 

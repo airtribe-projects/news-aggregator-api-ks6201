@@ -142,7 +142,7 @@ export class NewsController {
      * @param {Object} req - The request object.
      * @param {Object} res - The response object.
      */
-    static async getFavoritesNewsArticles(
+    static async getFavoriteNewsArticles(
         req,
         res
     ) {
