@@ -6,6 +6,7 @@ import { redisClient } from "../configs/redis.js";
 import { CONSTANTS } from "../configs/constants.js";
 import { UserPreferencesModel } from "../models/user-preferences.js";
 import { ServerError } from "../errors/server-error.js";
+import { createTagsFromText } from "../libs/tagger.js";
 import { HttpClientError, HttpServerError } from "../libs/http-response-code.js";
 
 
@@ -117,12 +118,16 @@ export class NewsService {
             // need to slice since there're too many articles per preference.
             const newsObj = {
                 id: SecId.generate(CONSTANTS.newsIdLength),
-                articles: data.articles.slice(0, 10).map(articles => {
+                articles: data.articles.slice(0, 10).map(article => {
+                    const text = `${article.title} ${article.description} ${article.content}`;
+                    const tags = createTagsFromText(text);
+                    
                     return {
                         id: SecId.generate(CONSTANTS.newsIdLength),
                         read: false,
                         favorite: false,
-                        ...articles,
+                        tags,
+                        ...article,
                     };
                 }),
             }
@@ -277,11 +282,7 @@ export class NewsService {
             const filteredArticles = [];
             for(let idx = 0; idx < currentPreference.articles.length; ++idx) {
                 
-                if( // TODO: maybe creating tags out of 'description' and 'content' would help better.
-                    currentPreference?.articles[idx].title.toLowerCase().includes(keyword) ||
-                    currentPreference?.articles[idx].description.toLowerCase().includes(keyword)
-                    // currentPreference?.articles[idx].content.includes(keyword) ||...
-                ) {
+                if(currentPreference?.articles[idx].tags.includes(keyword)) {
                     filteredArticles.push(currentPreference?.articles[idx]);
                 }
             }
