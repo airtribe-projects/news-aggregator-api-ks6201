@@ -262,7 +262,7 @@ export class NewsService {
     /**
      * Filters the provided news articles based on a keyword.
      *
-     * @param {Object} news - An array of news articles to be filtered. Each article is an object containing the article data.
+     * @param {Object} news - An object of news articles to be filtered.
      * @param {string} keyword - The keyword to filter the news articles by.
      */
     static filterNewsByKeyword(
