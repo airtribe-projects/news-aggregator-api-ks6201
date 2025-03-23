@@ -191,30 +191,10 @@ export class NewsController {
             news = await NewsService.getNewsByPreference(claims.userId);
         }
 
-        const filteredNews = {};
-
-        for(const preference in news) {
-            const currentPreference = news[preference];
-            
-            const filteredArticles = [];
-            for(let idx = 0; idx < currentPreference.articles.length; ++idx) {
-                
-                if( // TODO: maybe creating tags out of 'description' and 'content' would help better.
-                    currentPreference?.articles[idx].title.toLowerCase().includes(keyword) ||
-                    currentPreference?.articles[idx].description.toLowerCase().includes(keyword)
-                    // currentPreference?.articles[idx].content.includes(keyword) ||...
-                ) {
-                    filteredArticles.push(currentPreference?.articles[idx]);
-                }
-            }
- 
-            if(filteredArticles.length === 0) continue;
- 
-            if(!filteredArticles[preference]) {
-                filteredNews[preference] = {};
-            }
-            filteredNews[preference].articles = filteredArticles;
-        }
+        const filteredNews = NewsService.filterNewsByKeyword(
+            news,
+            keyword
+        );
 
         res.json({
             status: 'success',

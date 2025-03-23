@@ -258,4 +258,42 @@ export class NewsService {
             userId
         );
     }
+
+    /**
+     * Filters the provided news articles based on a keyword.
+     *
+     * @param {Object} news - An array of news articles to be filtered. Each article is an object containing the article data.
+     * @param {string} keyword - The keyword to filter the news articles by.
+     */
+    static filterNewsByKeyword(
+        news,
+        keyword
+    ) {
+        const filteredNews = {};
+
+        for(const preference in news) {
+            const currentPreference = news[preference];
+            
+            const filteredArticles = [];
+            for(let idx = 0; idx < currentPreference.articles.length; ++idx) {
+                
+                if( // TODO: maybe creating tags out of 'description' and 'content' would help better.
+                    currentPreference?.articles[idx].title.toLowerCase().includes(keyword) ||
+                    currentPreference?.articles[idx].description.toLowerCase().includes(keyword)
+                    // currentPreference?.articles[idx].content.includes(keyword) ||...
+                ) {
+                    filteredArticles.push(currentPreference?.articles[idx]);
+                }
+            }
+ 
+            if(filteredArticles.length === 0) continue;
+ 
+            if(!filteredArticles[preference]) {
+                filteredNews[preference] = {};
+            }
+            filteredNews[preference].articles = filteredArticles;
+        }
+
+        return filteredNews;
+    }
 };

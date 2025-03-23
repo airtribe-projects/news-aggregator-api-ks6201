@@ -15,7 +15,7 @@ class Database {
 
     constructor(
         databaseName,
-    ) {        
+    ) {
         this.#pool = new Pool({
             host: process.env.DB_HOST,
             user: process.env.DB_USER,
