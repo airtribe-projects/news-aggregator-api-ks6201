@@ -1,13 +1,13 @@
 "use strict";
 
-export const HttpInformational = {
+export const HttpInformational = Object.freeze({
     Continue: 100,
     Processing: 102,
     EarlyHints: 103,
     SwitchingProtocols: 101,
-};
+});
 
-export const HttpSuccess = {
+export const HttpSuccess = Object.freeze({
     OK: 200,
     IMUsed: 226,
     Created: 201,
@@ -18,9 +18,9 @@ export const HttpSuccess = {
     PartialContent: 206,
     AlreadyReported: 208,
     NonAuthoritativeInformation: 203,
-};
+});
 
-export const HttpRedirection = {
+export const HttpRedirection = Object.freeze({
     Found: 302,
     SeeOther: 303,
     UseProxy: 305,
@@ -29,9 +29,9 @@ export const HttpRedirection = {
     MovedPermanently: 301,
     TemporaryRedirect: 307,
     PermanentRedirect: 308,
-};
+});
 
-export const HttpClientError = {
+export const HttpClientError = Object.freeze({
     Gone: 410,
     Locked: 423,
     NotFound: 404,
@@ -61,9 +61,9 @@ export const HttpClientError = {
     UnavailableForLegalReasons: 451,
     RequestHeaderFieldsTooLarge: 431,
     ProxyAuthenticationRequired: 407,
-};
+});
 
-export const HttpServerError = {
+export const HttpServerError = Object.freeze({
     BadGateway: 502,
     NotExtended: 510,
     LoopDetected: 508,
@@ -75,4 +75,4 @@ export const HttpServerError = {
     VariantAlsoNegotiates: 506,
     HTTPVersionNotSupported: 505,
     NetworkAuthenticationRequired: 511,
-};
+});

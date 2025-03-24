@@ -1,11 +1,11 @@
 "use strict";
 
-export const PG_ERROR_CODE_MAP = {
-    '23505': 'Duplicate',           
+export const PG_ERROR_CODE_MAP = Object.freeze({
+    '23505': 'Duplicate',
     '23503': 'Foreign key violation',
-    '23502': 'Not null',            
-    '22003': 'Numeric overflow',    
-    '22001': 'Truncate error',      
+    '23502': 'Not null',
+    '22003': 'Numeric overflow',
+    '22001': 'Truncate error',
     '42601': 'Syntax error',        
     '23514': 'Check constraint',    
     '22007': 'Invalid date format', 
@@ -15,4 +15,4 @@ export const PG_ERROR_CODE_MAP = {
     '55000': 'Object state error',  
     '08004': 'Connection rejected', 
     '28000': 'Authentication error',
-};
+});

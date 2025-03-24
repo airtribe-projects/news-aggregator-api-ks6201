@@ -1,0 +1,45 @@
+services:
+  app-db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DATABASE}
+    volumes:
+      - ./db_news_aggregator.sql:/docker-entrypoint-initdb.d/db_news_aggregator.sql
+    networks:
+      - new-agg-net
+  
+  redis:
+    image: redis:8.0-M04-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - new-agg-net
+
+  application:
+    image: node:22.14-alpine3.20
+    ports:
+      - "3000:3000"
+    environment:
+      - NEWS_AGG_API_KEY=${NEWS_AGG_API_KEY}
+      - PORT=${PORT}
+      - NODE_ENV=production
+      - DB_HOST=app-db
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DATABASE=${DATABASE}
+      - REDIS_URL=redis://redis:6379
+      - JWT_SEC=${JWT_SEC}
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./app.js:/usr/src/app/app.js
+      - ./package.json:/usr/src/app/package.json
+    networks:
+      - new-agg-net
+    working_dir: /usr/src/app
+    command: ["sh", "-c", "npm i && node app.js"]
+
+networks:
+  new-agg-net:
+    driver: bridge
