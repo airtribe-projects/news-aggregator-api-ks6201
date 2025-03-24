@@ -1,6 +1,8 @@
 "use strict";
 
-export const PG_ERROR_CODE_MAP = Object.freeze({
+import { makeReadOnly } from "../../libs/utils.js";
+
+export const PG_ERROR_CODE_MAP = makeReadOnly({
     '23505': 'Duplicate',
     '23503': 'Foreign key violation',
     '23502': 'Not null',

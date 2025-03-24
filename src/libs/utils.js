@@ -54,3 +54,14 @@ export function isInDevelopmentMode() {
 
 export const asyncSleep = (ms) => 
     new Promise(resolve => setTimeout(resolve, ms));
+
+
+/**
+ * Freezes an object to make it immutable, preventing modification of its properties.
+ * 
+ * @param {Object} obj - The object to be made read-only.
+ * @returns {Object} The frozen (read-only) object.
+ */
+export function makeReadOnly(obj) {
+    return Object.freeze(obj);    
+}

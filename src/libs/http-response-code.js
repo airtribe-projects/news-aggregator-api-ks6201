@@ -1,13 +1,15 @@
 "use strict";
 
-export const HttpInformational = Object.freeze({
+import { makeReadOnly } from "./utils.js";
+
+export const HttpInformational = makeReadOnly({
     Continue: 100,
     Processing: 102,
     EarlyHints: 103,
     SwitchingProtocols: 101,
 });
 
-export const HttpSuccess = Object.freeze({
+export const HttpSuccess = makeReadOnly({
     OK: 200,
     IMUsed: 226,
     Created: 201,
@@ -20,7 +22,7 @@ export const HttpSuccess = Object.freeze({
     NonAuthoritativeInformation: 203,
 });
 
-export const HttpRedirection = Object.freeze({
+export const HttpRedirection = makeReadOnly({
     Found: 302,
     SeeOther: 303,
     UseProxy: 305,
@@ -31,7 +33,7 @@ export const HttpRedirection = Object.freeze({
     PermanentRedirect: 308,
 });
 
-export const HttpClientError = Object.freeze({
+export const HttpClientError = makeReadOnly({
     Gone: 410,
     Locked: 423,
     NotFound: 404,
@@ -63,7 +65,7 @@ export const HttpClientError = Object.freeze({
     ProxyAuthenticationRequired: 407,
 });
 
-export const HttpServerError = Object.freeze({
+export const HttpServerError = makeReadOnly({
     BadGateway: 502,
     NotExtended: 510,
     LoopDetected: 508,
