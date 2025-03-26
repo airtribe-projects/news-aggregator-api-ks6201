@@ -1,5 +1,7 @@
 "use strict";
 
+import { makeReadOnly } from "../libs/utils";
+
 
 export const BACKEND = makeReadOnly({
     PROTOCOL: 'http',
