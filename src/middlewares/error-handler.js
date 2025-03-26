@@ -47,6 +47,8 @@ export function errorHandler(
         return res.status(err.statusCode).json(response);
     }
     
+    console.log(err);
+    
     res.status(HttpServerError.InternalServerError).json({
         status: "error",
         error: "Unknown",
