@@ -1,4 +1,3 @@
 node_modules
 .tap
 .env
-docker-compose.yaml
