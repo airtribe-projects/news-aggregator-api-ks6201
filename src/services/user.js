@@ -11,7 +11,7 @@ import {
     ExpiredJwt,
     InvalidJwt
 } from "@d3vtool/utils";
-import { backendUrl } from "../configs/backend.js";
+import { BACKEND } from "../configs/backend.js";
 import { UserPreferencesModel } from "../models/user-preferences.js";
 import { HttpClientError, HttpServerError } from "../libs/http-response-code.js";
 
@@ -87,7 +87,7 @@ export class UserService {
         const token = await signJwt(
             {
                 aud: audience,
-                iss: backendUrl,
+                iss: BACKEND.URL,
                 exp: createExpiry("1h"),
                 sub: "authenticate-user",
                 iat: createIssueAt(new Date(Date.now())),
