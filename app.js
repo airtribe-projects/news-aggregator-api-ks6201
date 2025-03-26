@@ -10,7 +10,6 @@ import { authMiddleware } from "./src/middlewares/auth-middleware.js";
 
 await redisSetup();
 
-
 const app = express();
 const port = BACKEND.PORT;
 

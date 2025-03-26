@@ -367,7 +367,7 @@ Retrieves a list of news articles that are marked as favorites.
 ```js
 newsRouter.get(
     "/favorite", 
-    asyncHandler(NewsController.getFavoritesNewsArticles)
+    asyncHandler(NewsController.getFavoriteNewsArticles)
 );
 ```
 
@@ -377,7 +377,7 @@ newsRouter.get(
 - **404 Not Found**: Returns an error if no favorite news articles are found.
 
 **Controller:**
-- `NewsController.getFavoritesNewsArticles`: Handles the request to retrieve a list of favorite news articles.
+- `NewsController.getFavoriteNewsArticles`: Handles the request to retrieve a list of favorite news articles.
 
 ---
 
